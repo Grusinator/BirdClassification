@@ -8,7 +8,7 @@ A native Keras implementation of semantic segmentation according to
 *Multi-Scale Context Aggregation by Dilated Convolutions (2016)*. Optionally uses the pretrained weights by the
 [authors'](https://github.com/fyu/dilation).
 
-strictly copied from: https://github.com/nicolov/segmentation_keras.git
+copied from: https://github.com/nicolov/segmentation_keras.git
 
 
 

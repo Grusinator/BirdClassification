@@ -61,7 +61,7 @@ path = os.path.normpath(r"training_data/image_annotations_png/dag1")
 @click.option('--weights-path', type=click.Path(exists=True),
               default= os.path.normpath(r"cnn-models/pretrained-models/dilation8_pascal_voc/dilation8_pascal_voc.npy"))#vgg_conv.npy')
 
-@click.option('--batch-size', type=int, default=2)
+@click.option('--batch-size', type=int, default=1)
 @click.option('--learning-rate', type=float, default=1e-4)
 
 def train(train_list_fname,
@@ -149,18 +149,6 @@ def train(train_list_fname,
     print(batch_size)
     print(len(train_img_fnames))
 
-
-    # for i in datagen_train.flow_from_list(train_img_fnames,
-    #         train_mask_fnames,
-    #         shuffle=True,
-    #         batch_size=batch_size,
-    #         img_target_size=(w, h),
-    #         mask_target_size=(16, 16)):
-    #     p = i
-
-
-
-
     model.fit_generator(
         datagen_train.flow_from_list(
             train_img_fnames,
@@ -170,8 +158,8 @@ def train(train_list_fname,
             img_target_size=(w, h),
             mask_target_size=(16, 16)),
         verbose=2,
-        steps_per_epoch=2,#len(train_img_fnames),
-        nb_epoch=3,
+        steps_per_epoch=len(train_img_fnames),
+        nb_epoch=40,
         validation_data=datagen_val.flow_from_list(
             val_img_fnames,
             val_mask_fnames,
