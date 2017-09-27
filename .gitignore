@@ -1,12 +1,7 @@
 *.npy
 *.pyc
 
-/conversion
-!/conversion/.dockerignore
-!/conversion/Dockerfile
-!/conversion/README.md
-!/conversion/converted/.gitkeep
+/cnn-models
 
-nicolov_segmentation_model.tar.gz
-
-/.idea/
+/training_data
+!/training_data/image_annotations_png

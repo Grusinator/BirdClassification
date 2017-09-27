@@ -15,6 +15,9 @@ from utils.image_reader import (
     RandomTransformer,
     SegmentationDataGenerator)
 
+h = 500
+w = 500
+
 
 def load_weights(model, weights_path):
     weights_data = np.load(weights_path, encoding='latin1').item()
@@ -26,19 +29,41 @@ def load_weights(model, weights_path):
                                layer_weights['biases']))
 
 
+"""
 @click.command()
 @click.option('--train-list-fname', type=click.Path(exists=True),
-              default='/mnt/pascal_voc/benchmark_RELEASE/dataset/train.txt')
+              default='/home/wsh/python/segmentation_keras/data/train.txt')
 @click.option('--val-list-fname', type=click.Path(exists=True),
-              default='/mnt/pascal_voc/benchmark_RELEASE/dataset/val.txt')
+              default='/home/wsh/python/segmentation_keras/data/val.txt')
 @click.option('--img-root', type=click.Path(exists=True),
-              default='/mnt/pascal_voc/benchmark_RELEASE/dataset/img')
+              default='/home/wsh/python/segmentation_keras/data/img/')
 @click.option('--mask-root', type=click.Path(exists=True),
-              default='/mnt/pascal_voc/benchmark_RELEASE/dataset/pngs')
+              default='/home/wsh/python/segmentation_keras/data/mask/')
 @click.option('--weights-path', type=click.Path(exists=True),
-              default='conversion/converted/vgg_conv.npy')
+              default='conversion/converted/dilation8_pascal_voc.npy')#vgg_conv.npy')
 @click.option('--batch-size', type=int, default=1)
 @click.option('--learning-rate', type=float, default=1e-4)
+"""
+
+#training data path
+#path = '/home/wsh/python/xmllabel2img/dag1/output/'
+path = os.path.normpath(r"training_data/image_annotations_png/dag1")
+
+@click.command()
+@click.option('--train-list-fname', type=click.Path(exists=True),
+              default=os.path.normpath(r"%s/train.txt"%path))
+@click.option('--val-list-fname', type=click.Path(exists=True),
+              default=os.path.normpath(r"%s/val.txt"%path))
+@click.option('--img-root', type=click.Path(exists=True),
+              default=os.path.normpath(r"%s/img/"%path))
+@click.option('--mask-root', type=click.Path(exists=True),
+              default=os.path.normpath(r"%s/mask/"%path))
+@click.option('--weights-path', type=click.Path(exists=True),
+              default= os.path.normpath(r"cnn-models/pretrained-models/dilation8_pascal_voc/dilation8_pascal_voc.npy"))#vgg_conv.npy')
+
+@click.option('--batch-size', type=int, default=2)
+@click.option('--learning-rate', type=float, default=1e-4)
+
 def train(train_list_fname,
           val_list_fname,
           img_root,
@@ -56,10 +81,10 @@ def train(train_list_fname,
     datagen_val = SegmentationDataGenerator(transformer_val)
 
     train_desc = '{}-lr{:.0e}-bs{:03d}'.format(
-        time.strftime("%Y-%m-%d %H:%M"),
+        time.strftime("%Y-%m-%d %H.%M"),
         learning_rate,
         batch_size)
-    checkpoints_folder = 'trained/' + train_desc
+    checkpoints_folder = 'cnn-models/' + train_desc
     try:
         os.makedirs(checkpoints_folder)
     except OSError:
@@ -84,7 +109,7 @@ def train(train_list_fname,
         min_lr=0.05 * learning_rate)
 
     model = add_softmax(
-        get_frontend(500, 500))
+        get_frontend(w, h))
 
     load_weights(model, weights_path)
 
@@ -104,10 +129,37 @@ def train(train_list_fname,
     train_img_fnames, train_mask_fnames = build_abs_paths(train_basenames)
     val_img_fnames, val_mask_fnames = build_abs_paths(val_basenames)
 
+
+    # for fnames in train_img_fnames:
+    #     if not os.path.exists(fnames):
+    #         train_img_fnames.remove(fnames)
+    #         print("removed: " + fnames)
+    #
+    # for fnames in val_img_fnames:
+    #     if not os.path.exists(fnames):
+    #         val_img_fnames.remove(fnames)
+    #         print("removed: " + fnames)
+
+
     skipped_report_cback = callbacks.LambdaCallback(
         on_epoch_end=lambda a, b: open(
             '{}/skipped.txt'.format(checkpoints_folder), 'a').write(
             '{}\n'.format(datagen_train.skipped_count)))
+
+    print(batch_size)
+    print(len(train_img_fnames))
+
+
+    # for i in datagen_train.flow_from_list(train_img_fnames,
+    #         train_mask_fnames,
+    #         shuffle=True,
+    #         batch_size=batch_size,
+    #         img_target_size=(w, h),
+    #         mask_target_size=(16, 16)):
+    #     p = i
+
+
+
 
     model.fit_generator(
         datagen_train.flow_from_list(
@@ -115,17 +167,18 @@ def train(train_list_fname,
             train_mask_fnames,
             shuffle=True,
             batch_size=batch_size,
-            img_target_size=(500, 500),
+            img_target_size=(w, h),
             mask_target_size=(16, 16)),
-        samples_per_epoch=len(train_basenames),
-        nb_epoch=20,
+        verbose=2,
+        steps_per_epoch=2,#len(train_img_fnames),
+        nb_epoch=3,
         validation_data=datagen_val.flow_from_list(
             val_img_fnames,
             val_mask_fnames,
-            batch_size=8,
-            img_target_size=(500, 500),
+            batch_size=2,
+            img_target_size=(w, h),
             mask_target_size=(16, 16)),
-        nb_val_samples=len(val_basenames),
+        validation_steps=len(val_img_fnames),
         callbacks=[
             model_checkpoint,
             tensorboard_cback,
@@ -133,6 +186,8 @@ def train(train_list_fname,
             reduce_lr_cback,
             skipped_report_cback,
         ])
+
+    model.save_weights()
 
 
 if __name__ == '__main__':
