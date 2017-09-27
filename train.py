@@ -68,7 +68,7 @@ def load_weights(model, weights_path):
 
 
 @click.command()
-@click.option('--data-dir', type=click.Path(exists=True),
+@click.option('--train-data-dir', type=click.Path(exists=True),
               default=os.path.normpath(r"training_data/image_annotations_png/dag1"))
 @click.option('--weights-path', type=click.Path(exists=True),
               default= os.path.normpath(r"pretrained-models/dilation8_pascal_voc/dilation8_pascal_voc.npy"))#vgg_conv.npy')
