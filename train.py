@@ -47,30 +47,42 @@ def load_weights(model, weights_path):
 
 #training data path
 #path = '/home/wsh/python/xmllabel2img/dag1/output/'
-path = os.path.normpath(r"training_data/image_annotations_png/dag1")
+# path = os.path.normpath(r"training_data/image_annotations_png/dag1")
+#
+# @click.command()
+# @click.option('--train-dir', type=click.Path(exists=True),
+#               default=os.path.normpath(r"training_data/image_annotations_png/dag1"))
+# @click.option('--train-list-fname', type=click.Path(exists=True),
+#               default=os.path.normpath(r"%s/train.txt"%path))
+# @click.option('--val-list-fname', type=click.Path(exists=True),
+#               default=os.path.normpath(r"%s/val.txt"%path))
+# @click.option('--img-root', type=click.Path(exists=True),
+#               default=os.path.normpath(r"%s/img/"%path))
+# @click.option('--mask-root', type=click.Path(exists=True),
+#               default=os.path.normpath(r"%s/mask/"%path))
+# @click.option('--weights-path', type=click.Path(exists=True),
+#               default= os.path.normpath(r"pretrained-models/dilation8_pascal_voc/dilation8_pascal_voc.npy"))#vgg_conv.npy')
+#
+# @click.option('--batch-size', type=int, default=1)
+# @click.option('--learning-rate', type=float, default=1e-4)
+
 
 @click.command()
-@click.option('--train-list-fname', type=click.Path(exists=True),
-              default=os.path.normpath(r"%s/train.txt"%path))
-@click.option('--val-list-fname', type=click.Path(exists=True),
-              default=os.path.normpath(r"%s/val.txt"%path))
-@click.option('--img-root', type=click.Path(exists=True),
-              default=os.path.normpath(r"%s/img/"%path))
-@click.option('--mask-root', type=click.Path(exists=True),
-              default=os.path.normpath(r"%s/mask/"%path))
+@click.option('--data-dir', type=click.Path(exists=True),
+              default=os.path.normpath(r"training_data/image_annotations_png/dag1"))
 @click.option('--weights-path', type=click.Path(exists=True),
-              default= os.path.normpath(r"cnn-models/pretrained-models/dilation8_pascal_voc/dilation8_pascal_voc.npy"))#vgg_conv.npy')
+              default= os.path.normpath(r"pretrained-models/dilation8_pascal_voc/dilation8_pascal_voc.npy"))#vgg_conv.npy')
 
 @click.option('--batch-size', type=int, default=1)
 @click.option('--learning-rate', type=float, default=1e-4)
 
-def train(train_list_fname,
-          val_list_fname,
-          img_root,
-          mask_root,
-          weights_path,
-          batch_size,
-          learning_rate):
+def train(train_data_dir, weights_path, batch_size, learning_rate):
+
+    #create full paths
+    train_list_fname = os.path.join(train_data_dir, "train.txt")
+    val_list_fname = os.path.join(train_data_dir, "val.txt")
+    img_root = os.path.join(train_data_dir, "img")
+    mask_root = os.path.join(train_data_dir, "mask")
 
     # Create image generators for the training and validation sets. Validation has
     # no data augmentation.
@@ -93,7 +105,10 @@ def train(train_list_fname,
 
     model_checkpoint = callbacks.ModelCheckpoint(
         checkpoints_folder + '/ep{epoch:02d}-vl{val_loss:.4f}.hdf5',
-        monitor='loss')
+        monitor='val_loss',
+        save_best_only=True,
+        period=3
+    )
     tensorboard_cback = callbacks.TensorBoard(
         log_dir='{}/tboard'.format(checkpoints_folder),
         histogram_freq=0,
@@ -157,13 +172,13 @@ def train(train_list_fname,
             batch_size=batch_size,
             img_target_size=(w, h),
             mask_target_size=(16, 16)),
-        verbose=2,
+        verbose=1,
         steps_per_epoch=len(train_img_fnames),
         nb_epoch=40,
         validation_data=datagen_val.flow_from_list(
             val_img_fnames,
             val_mask_fnames,
-            batch_size=2,
+            batch_size=5,
             img_target_size=(w, h),
             mask_target_size=(16, 16)),
         validation_steps=len(val_img_fnames),

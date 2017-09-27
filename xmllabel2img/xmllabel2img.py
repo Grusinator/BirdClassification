@@ -1,15 +1,39 @@
 
-
 import xml.etree.ElementTree
 import os
-
 from PIL import Image
 import numpy as np
-
-from skimage import filters
-from skimage import data
-from sklearn.model_selection import train_test_split
 import random
+import click
+
+
+@click.command()
+@click.option('--labelpath', type=click.Path(exists=True),
+              default=os.path.normpath(r"../training_data/image_annotations_xml/dag2_better_all/annotations/"))
+@click.option('--imagepath', type=click.Path(exists=True),
+              default=os.path.normpath(r"../training_data/image_annotations_xml/dag2_better_all/images/"))
+@click.option('--outputpath', type=click.Path(exists=True),
+              default=os.path.normpath(r"../training_data/image_annotations_png/dag2_better_all/"))
+def process(labelpath,imagepath,outputpath):
+    imgfilenames = getfilenames(imagepath, '.jpg')
+    xmlfilenames = getfilenames(labelpath, '.xml')
+
+    imagelist = xmllabel2img(xmlfilenames, imgfilenames)
+
+    dirs = ['img', 'mask']
+
+    full_dir = list(map(lambda x:os.path.join(outputpath,x), dirs))
+
+    [create_if_not_exists(folder) for folder in full_dir]
+
+    for img, xmlfile in zip(imagelist, xmlfilenames):
+        filename = remove_path_and_ext(xmlfile)
+        imgpath = os.path.join(outputpath, dirs[0], filename + '.jpg')
+        maskpath = os.path.join(outputpath, dirs[1], filename + '.png')
+        img[0].save(imgpath)
+        img[1].save(maskpath)
+
+    create_train_val_list(labelpath,outputpath)
 
 
 def xmllabel2img(xmlfilenames, imagefilenames, img_size=(500,500,3)):
@@ -39,9 +63,6 @@ def singlexmllabel2img(xmlfilename, imagefilename, img_size=(500,500,3)):
 
     path = e.find('path')
 
-
-
-    
 
     xdif = xmax - xmin
     ydif = ymax - ymin
@@ -88,11 +109,6 @@ def remove_path_and_ext(path):
     base=os.path.basename(path)
     return os.path.splitext(base)[0]
 
-
-
-
-#path = "smb://allkfs09/home/Projects/LiDAR_Bird_detection_2015/Hornsea/4_results/test/annotations/"
-
 def getfilenames(path, ext):
     filenamelist = []
 
@@ -110,66 +126,31 @@ def PIL2array(img):
         dim3 = 1
     return np.array(img.getdata(), np.uint8).reshape(img.size[1], img.size[0], dim3)
 
+def create_if_not_exists(dir):
+    if not os.path.exists(dir):
+        os.makedirs(dir)
 
 
 
-xmlpath = '/home/wsh/python/xmllabel2img/dag1/annotations/'
-imgpath = '/home/wsh/python/xmllabel2img/dag1/Images/'
+def create_train_val_list(xmlpath,outputpath):
+    xmlfilenames = getfilenames(xmlpath, '.xml')
 
-imgfilenames = getfilenames(imgpath, '.jpg')
-xmlfilenames = getfilenames(xmlpath, '.xml')
+    random.shuffle(xmlfilenames)
 
+    nr = int(len(xmlfilenames) * 0.8)
 
-imagelist = xmllabel2img(xmlfilenames, imgfilenames)
+    train = xmlfilenames[0:nr]
+    val = xmlfilenames[nr:]
 
-#write to disk
-outputpath = '/home/wsh/python/xmllabel2img/dag1/output/'
-img_folder = 'img'
+    f_train = open('%s/train.txt'%outputpath, 'w')
+    for i in train:
+        f_train.write(remove_path_and_ext(i) + '\n')  # python will convert \n to os.linesep
+    f_train.close()
 
+    f_val = open('%s/val.txt'%outputpath, 'w')
+    for i in val:
+        f_val.write(remove_path_and_ext(i) +'\n')  # python will convert \n to os.linesep
+    f_val.close()
 
-
-
-for img, xmlfile in zip(imagelist, xmlfilenames):
-    filename = remove_path_and_ext(xmlfile)
-    img[0].save('%s/img/%s.jpg' %(outputpath, filename))
-
-    #convert to grayscale and truncate border
-    #trunc = PIL2array(img[0].convert('L')) #* PIL2array(img[1])
-
-    #gray = img[0].convert('L')
-    #print(trunc)
-
-    #test = np.array(range(100),dtype=np.double)
-    #val = filters.threshold_otsu(test)
-
-    #mask = trunc < val
-    #mask_img = Image.fromarray(mask)
-    
-    #mask_img.save('output_data/mask_filter/%s.jpg' %filename)
-
-    img[1].save('%s/mask/%s.png' %(outputpath, filename))
-
-
-
-
-
-
-#train,_,val,_ = train_test_split(xmlfilenames,xmlfilenames size=0.2)
-
-
-random.shuffle(xmlfilenames)
-
-nr = int(len(xmlfilenames) * 0.8)
-
-train = xmlfilenames[0:nr]
-val = xmlfilenames[nr:]
-
-f_train = open('%s/train.txt'%outputpath, 'w')
-for i in train:
-    f_train.write(remove_path_and_ext(i) + '\n')  # python will convert \n to os.linesep
-f_train.close()
-
-f_val = open('%s/val.txt'%outputpath, 'w')
-for i in val:
-    f_val.write(remove_path_and_ext(i) +'\n')  # python will convert \n to os.linesep
-f_val.close()
+if __name__ == "__main__":
+    process()

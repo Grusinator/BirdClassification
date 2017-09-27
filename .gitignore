@@ -1,7 +1,7 @@
 *.npy
 *.pyc
 
-/cnn-models
+/cnn-models/*
 
 /training_data/*
 !/training_data/image_annotations_png
