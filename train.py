@@ -72,7 +72,7 @@ def load_weights(model, weights_path):
               default=os.path.normpath(r"training_data/image_annotations_png/dag1"))
 @click.option('--pretrained-path', type=click.Path(exists=True),
               default= os.path.normpath(r"pretrained-models/dilation8_pascal_voc/dilation8_pascal_voc.npy"))#vgg_conv.npy')
-@click.option('--weights-save-path', type=click.Path(exists=True),
+@click.option('--weights-save-path', type=click.Path(exists=False),
               default= os.path.normpath(r"cnn-models/latest.hdf5"))#vgg_conv.npy')
 
 
