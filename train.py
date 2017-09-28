@@ -68,21 +68,25 @@ def load_weights(model, weights_path):
 
 
 @click.command()
-@click.option('--train-data-dir', type=click.Path(exists=True),
+@click.option('--train-data-path', type=click.Path(exists=True),
               default=os.path.normpath(r"training_data/image_annotations_png/dag1"))
-@click.option('--weights-path', type=click.Path(exists=True),
+@click.option('--pretrained-path', type=click.Path(exists=True),
               default= os.path.normpath(r"pretrained-models/dilation8_pascal_voc/dilation8_pascal_voc.npy"))#vgg_conv.npy')
+@click.option('--weights-save-path', type=click.Path(exists=True),
+              default= os.path.normpath(r"cnn-models/latest.hdf5"))#vgg_conv.npy')
+
 
 @click.option('--batch-size', type=int, default=1)
+@click.option('--epochs', type=int, default=15)
 @click.option('--learning-rate', type=float, default=1e-4)
 
-def train(train_data_dir, weights_path, batch_size, learning_rate):
+def train(train_data_path, pretrained_path ,weights_save_path, batch_size,epochs, learning_rate):
 
     #create full paths
-    train_list_fname = os.path.join(train_data_dir, "train.txt")
-    val_list_fname = os.path.join(train_data_dir, "val.txt")
-    img_root = os.path.join(train_data_dir, "img")
-    mask_root = os.path.join(train_data_dir, "mask")
+    train_list_fname = os.path.join(train_data_path, "train.txt")
+    val_list_fname = os.path.join(train_data_path, "val.txt")
+    img_root = os.path.join(train_data_path, "img")
+    mask_root = os.path.join(train_data_path, "mask")
 
     # Create image generators for the training and validation sets. Validation has
     # no data augmentation.
@@ -126,7 +130,7 @@ def train(train_data_dir, weights_path, batch_size, learning_rate):
     model = add_softmax(
         get_frontend(w, h))
 
-    load_weights(model, weights_path)
+    load_weights(model, pretrained_path)
 
     model.compile(loss='sparse_categorical_crossentropy',
                   optimizer=optimizers.SGD(lr=learning_rate, momentum=0.9),
@@ -174,7 +178,7 @@ def train(train_data_dir, weights_path, batch_size, learning_rate):
             mask_target_size=(16, 16)),
         verbose=1,
         steps_per_epoch=len(train_img_fnames),
-        nb_epoch=40,
+        nb_epoch=epochs,
         validation_data=datagen_val.flow_from_list(
             val_img_fnames,
             val_mask_fnames,
@@ -190,7 +194,7 @@ def train(train_data_dir, weights_path, batch_size, learning_rate):
             skipped_report_cback,
         ])
 
-    model.save_weights()
+    model.save_weights(weights_save_path)
 
 
 if __name__ == '__main__':
