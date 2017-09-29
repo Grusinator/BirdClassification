@@ -1,6 +1,6 @@
 *.npy
 *.pyc
-
+/pretrained-models
 /cnn-models/*
 
 /pretrained-models

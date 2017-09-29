@@ -253,7 +253,7 @@ def main():
                              'Default is the mean pixel of PASCAL dataset.')
     parser.add_argument('--zoom', default=8, type=int,
                         help='Upscaling factor')
-    parser.add_argument('--weights_path', default='cnn-models/ep10-vl0.0908.hdf5', #'./dilation_pascal16.npy',
+    parser.add_argument('--weights_path', default='cnn-models/latest.hdf5', #'./dilation_pascal16.npy',
                         help='Weights file')
 
     args = parser.parse_args()
