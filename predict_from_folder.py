@@ -244,7 +244,7 @@ def forward_pass(args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('input_path', nargs='?', default='validation_data/test1/input_folder',
+    parser.add_argument('--input_path', nargs='?', default='validation_data/test1/input_folder',
                         help='Required path to input image folder')
     parser.add_argument('--output_path', default='validation_data/test1/results',
                         help='Path to segmented image')
@@ -257,6 +257,8 @@ def main():
                         help='Weights file')
 
     args = parser.parse_args()
+
+
 
     if not args.output_path:
         dir_name, file_name = os.path.split(args.input_path)
