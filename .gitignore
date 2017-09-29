@@ -3,5 +3,6 @@
 
 /cnn-models/*
 
+/pretrained-models
 /training_data/*
 !/training_data/image_annotations_png
