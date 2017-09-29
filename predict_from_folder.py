@@ -258,6 +258,8 @@ def main():
 
     args = parser.parse_args()
 
+
+
     if not args.output_path:
         dir_name, file_name = os.path.split(args.input_path)
         args.output_path = os.path.join(
