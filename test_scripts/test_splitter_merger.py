@@ -4,7 +4,7 @@ import numpy as np
 
 ism = image_splitter_merger((250,250))
 
-image_path = "cat.jpg"
+image_path = "_test_input.jpg"
 
 image = Image.open(image_path)
 # devide input image into suitable prediction sizes
@@ -30,6 +30,9 @@ with open(outputpath, 'wb') as out_file:
 
 image_in = np.array(Image.open(image_path)).astype(np.float32)
 
+mean = np.mean(image_in, axis=0)
+print(mean)
+print(np.mean(mean, axis=0))
 image_out = np.array(Image.open(outputpath)).astype(np.float32)
 
 
