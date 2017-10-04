@@ -183,9 +183,9 @@ def get_trained_model(args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_path', nargs='?', default='images_test_previews/testfolder',#'validation_data/test1/input_folder',
+    parser.add_argument('--input_path', nargs='?', default='validation_data/test1/input_folder',
                         help='Required path to input image folder')
-    parser.add_argument('--output_path', default='images_test_previews/testfolder/res',#'validation_data/test1/results',
+    parser.add_argument('--output_path', default='validation_data/test1/results',
                         help='Path to segmented image')
     parser.add_argument('--mean', nargs='*', default=\
                         #[98.63, 75.17, 23.57], #birds
@@ -194,7 +194,7 @@ def main():
                              'Default is the mean pixel of PASCAL dataset.')
     parser.add_argument('--zoom', default=8, type=int,
                         help='Upscaling factor')
-    parser.add_argument('--weights_path', default='cnn-models/ep10-vl0.0908.hdf5',#'cnn-models/latest.hdf5',
+    parser.add_argument('--weights_path', default='cnn-models/latest.hdf5',
                         help='Weights file')
 
     args = parser.parse_args()
