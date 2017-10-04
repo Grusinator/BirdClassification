@@ -17,8 +17,12 @@ TransformParams = namedtuple(
 
 pascal_mean_old = np.array([102.93, 111.36, 116.52])
 
-pascal_mean = np.array([23.57490158, 75.17044067, 98.63441467])
 
+#most likely RGB
+pascal_mean_rgb = np.array([23.57490158, 75.17044067, 98.63441467])
+#so this must be inverted BGR
+pascal_mean = np.array([98.63, 75.17, 23.57])
+#makes sense, most blue in water, a little green  ;)
 
 label_margin = 186
 
