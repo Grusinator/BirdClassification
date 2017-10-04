@@ -63,9 +63,11 @@ def predict_from_folder(args):
 
         subimg_list = map(functools.partial(transform_image, mean=args.mean), subimg_list)
 
+        c = list(subimg_list)[0]
         # predict on each image
         annotated_subimg_list = map(functools.partial(predict_image,model=model), subimg_list)
 
+        #l = list(annotated_subimg_list)[0]
         # merge the subsections
         annotated_image = ism.image_merger(map(toPILImage, annotated_subimg_list))
         # construct output path
@@ -128,9 +130,10 @@ def predict_image(image, model):
     prob_edge = np.sqrt(prob.shape[0]).astype(np.int)
     prob = prob.reshape((prob_edge, prob_edge, 21))
 
-    # Upsample
-    #if args.zoom > 1:
-    #    prob = interp_map(prob, args.zoom, image_size[1], image_size[0])
+    args_zoom = 8
+    #Upsample
+    if args_zoom > 1:
+       prob = interp_map(prob, args_zoom, image_size[1], image_size[0])
 
     # Recover the most likely prediction (actual segment class)
     prediction = np.argmax(prob, axis=2)
@@ -181,9 +184,6 @@ def forward_pass(args):
     ''' Runs a forward pass to segment the image. '''
 
     model = get_trained_model(args)
-
-
-
 
     # Load image and swap RGB -> BGR to match the trained weights
     image_rgb = np.array(Image.open(args.input_path)).astype(np.float32)
@@ -244,16 +244,18 @@ def forward_pass(args):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_path', nargs='?', default='validation_data/test1/input_folder',
+    parser.add_argument('--input_path', nargs='?', default='images_test_previews/testfolder',#'validation_data/test1/input_folder',
                         help='Required path to input image folder')
-    parser.add_argument('--output_path', default='validation_data/test1/results',
+    parser.add_argument('--output_path', default='images_test_previews/testfolder/res',#'validation_data/test1/results',
                         help='Path to segmented image')
-    parser.add_argument('--mean', nargs='*', default=[98.63, 75.17, 23.57],
+    parser.add_argument('--mean', nargs='*', default=\
+                        #[98.63, 75.17, 23.57], #birds
+                        [102.93, 111.36, 116.52], #PASCAL
                         help='Mean pixel value (BGR) for the dataset.\n'
                              'Default is the mean pixel of PASCAL dataset.')
     parser.add_argument('--zoom', default=8, type=int,
                         help='Upscaling factor')
-    parser.add_argument('--weights_path', default='cnn-models/latest.hdf5', #'./dilation_pascal16.npy',
+    parser.add_argument('--weights_path', default='cnn-models/ep10-vl0.0908.hdf5',#'cnn-models/latest.hdf5',
                         help='Weights file')
 
     args = parser.parse_args()
