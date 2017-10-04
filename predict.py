@@ -16,7 +16,7 @@ from PIL import Image
 from IPython import embed
 
 from model import get_frontend, add_softmax, add_context
-from utils import interp_map, pascal_palette
+from lib.utils import interp_map, pascal_palette
 
 # Settings for the Pascal dataset
 input_width, input_height = 900, 900

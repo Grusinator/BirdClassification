@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="16566d4d-bd7d-4846-b7da-14b82d5320c2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predict.py" afterPath="$PROJECT_DIR$/predict.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predict_from_folder.py" afterPath="$PROJECT_DIR$/predict_from_folder.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,23 +15,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train.py">
+      <file leaf-file-name="test_splitter_merger.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test_scripts/test_splitter_merger.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="196" column="52" lean-forward="false" selection-start-line="196" selection-start-column="52" selection-end-line="196" selection-end-column="52" />
-              <folding>
-                <element signature="e#47#56#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-144">
+              <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="predict.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="predict.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/predict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="69" column="45" lean-forward="false" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="45" />
+            <state relative-caret-position="493">
+              <caret line="136" column="44" lean-forward="true" selection-start-line="136" selection-start-column="44" selection-end-line="136" selection-end-column="44" />
               <folding>
                 <element signature="e#157#204#0" expanded="true" />
               </folding>
@@ -40,8 +40,8 @@
       <file leaf-file-name="test_image_seg_generator.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_scripts/test_image_seg_generator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
+            <state relative-caret-position="203">
+              <caret line="77" column="38" lean-forward="false" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
               <folding>
                 <element signature="e#47#56#0" expanded="true" />
               </folding>
@@ -49,11 +49,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="core.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Anaconda/envs/tensorflow/Lib/site-packages/click/core.py">
+      <file leaf-file-name="xmllabel2img.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/xmllabel2img/xmllabel2img.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="721" column="0" lean-forward="false" selection-start-line="721" selection-start-column="0" selection-end-line="721" selection-end-column="0" />
+            <state relative-caret-position="168">
+              <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+              <folding>
+                <element signature="e#1#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SegDataGenerator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/utils/SegDataGenerator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-284">
+              <caret line="429" column="0" lean-forward="false" selection-start-line="429" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -72,34 +84,22 @@
       <file leaf-file-name="image_reader.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/utils/image_reader.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1659">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="294">
+              <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SegDataGenerator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/utils/SegDataGenerator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="371" column="36" lean-forward="false" selection-start-line="371" selection-start-column="36" selection-end-line="371" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="predict_from_folder.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="predict_from_folder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predict_from_folder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="274">
-              <caret line="242" column="0" lean-forward="true" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
+            <state relative-caret-position="273">
+              <caret line="250" column="53" lean-forward="false" selection-start-line="250" selection-start-column="53" selection-end-line="250" selection-end-column="74" />
               <folding>
                 <element signature="e#157#204#0" expanded="true" />
-                <element signature="e#4586#5054#0" expanded="false" />
-                <element signature="e#5094#5172#0" expanded="false" />
+                <element signature="e#4590#5058#0" expanded="false" />
+                <element signature="e#5098#5176#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -138,9 +138,9 @@
       <find>h</find>
       <find>yield</find>
       <find>mean</find>
-      <find>pascal_mean</find>
       <find>flow_from_directory</find>
       <find>print</find>
+      <find>pascal_mean</find>
     </findStrings>
     <replaceStrings>
       <replace>data_dir</replace>
@@ -161,16 +161,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/model.py" />
-        <option value="$PROJECT_DIR$/predict.py" />
         <option value="$PROJECT_DIR$/lib/utils/image_splitter_merger.py" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/convert_labels_to_masks.bat" />
         <option value="$PROJECT_DIR$/xmllabel2img/xmllabel2img.py" />
         <option value="$PROJECT_DIR$/test_scripts/test_splitter_merger.py" />
-        <option value="$PROJECT_DIR$/predict_from_folder.py" />
-        <option value="$PROJECT_DIR$/lib/utils/image_reader.py" />
         <option value="$PROJECT_DIR$/test_scripts/test_image_seg_generator.py" />
         <option value="$PROJECT_DIR$/train.py" />
+        <option value="$PROJECT_DIR$/lib/utils/image_reader.py" />
+        <option value="$PROJECT_DIR$/predict_from_folder.py" />
+        <option value="$PROJECT_DIR$/predict.py" />
       </list>
     </option>
   </component>
@@ -226,6 +226,11 @@
             <path>
               <item name="BirdClassification" type="b2602c69:ProjectViewProjectNode" />
               <item name="BirdClassification" type="462c0819:PsiDirectoryNode" />
+              <item name="cnn-models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BirdClassification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BirdClassification" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -233,6 +238,29 @@
               <item name="BirdClassification" type="462c0819:PsiDirectoryNode" />
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BirdClassification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BirdClassification" type="462c0819:PsiDirectoryNode" />
+              <item name="validation_data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BirdClassification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BirdClassification" type="462c0819:PsiDirectoryNode" />
+              <item name="validation_data" type="462c0819:PsiDirectoryNode" />
+              <item name="test1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BirdClassification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BirdClassification" type="462c0819:PsiDirectoryNode" />
+              <item name="validation_data" type="462c0819:PsiDirectoryNode" />
+              <item name="test1" type="462c0819:PsiDirectoryNode" />
+              <item name="input_folder" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BirdClassification" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BirdClassification" type="462c0819:PsiDirectoryNode" />
+              <item name="xmllabel2img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -265,8 +293,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.train">
-    <configuration name="predict_from_folder" type="PythonConfigurationType" factoryName="Python" temporary="true">
+  <component name="RunManager" selected="Python.predict">
+    <configuration name="predict" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -277,8 +305,8 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="segmentation_keras" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predict_from_folder.py" />
+      <module name="BirdClassification" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/predict.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -353,18 +381,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python.train" />
-      <item index="1" class="java.lang.String" itemvalue="Python.predict_from_folder" />
-      <item index="2" class="java.lang.String" itemvalue="Python.test_splitter_merger" />
-      <item index="3" class="java.lang.String" itemvalue="Python.xmllabel2img" />
-      <item index="4" class="java.lang.String" itemvalue="Python.test_image_seg_generator" />
+      <item index="1" class="java.lang.String" itemvalue="Python.test_splitter_merger" />
+      <item index="2" class="java.lang.String" itemvalue="Python.xmllabel2img" />
+      <item index="3" class="java.lang.String" itemvalue="Python.test_image_seg_generator" />
+      <item index="4" class="java.lang.String" itemvalue="Python.predict" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.train" />
-        <item index="1" class="java.lang.String" itemvalue="Python.test_image_seg_generator" />
-        <item index="2" class="java.lang.String" itemvalue="Python.test_splitter_merger" />
-        <item index="3" class="java.lang.String" itemvalue="Python.xmllabel2img" />
-        <item index="4" class="java.lang.String" itemvalue="Python.predict_from_folder" />
+        <item index="0" class="java.lang.String" itemvalue="Python.predict" />
+        <item index="1" class="java.lang.String" itemvalue="Python.train" />
+        <item index="2" class="java.lang.String" itemvalue="Python.test_image_seg_generator" />
+        <item index="3" class="java.lang.String" itemvalue="Python.test_splitter_merger" />
+        <item index="4" class="java.lang.String" itemvalue="Python.xmllabel2img" />
       </list>
     </recent_temporary>
   </component>
@@ -431,7 +459,21 @@
       <option name="project" value="LOCAL" />
       <updated>1506693625843</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="args">
+      <created>1507121342565</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1507121342567</updated>
+    </task>
+    <task id="LOCAL-00009" summary="changed to BGR mean for predict_from_folder and train">
+      <created>1507121935752</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1507121935752</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView">
@@ -446,7 +488,7 @@
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1170" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19871107" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24597207" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -501,7 +543,8 @@
     <MESSAGE value="new training data set + updated xmllabel2img.py" />
     <MESSAGE value="insert epochs + out path of model" />
     <MESSAGE value="args" />
-    <option name="LAST_COMMIT_MESSAGE" value="args" />
+    <MESSAGE value="changed to BGR mean for predict_from_folder and train" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed to BGR mean for predict_from_folder and train" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -569,14 +612,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test_scripts/test_splitter_merger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="27" column="34" lean-forward="false" selection-start-line="27" selection-start-column="34" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Anaconda/envs/tensorflow/Lib/codecs.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6531">
@@ -589,7 +624,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#47#56#0" expanded="true" />
+            <element signature="e#47#56#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -617,8 +652,8 @@
           <caret line="73" column="48" lean-forward="false" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
           <folding>
             <element signature="e#157#204#0" expanded="true" />
-            <element signature="e#4586#5054#0" expanded="false" />
-            <element signature="e#5094#5172#0" expanded="false" />
+            <element signature="e#4590#5058#0" expanded="false" />
+            <element signature="e#5098#5176#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -664,7 +699,7 @@
         <state relative-caret-position="2667">
           <caret line="139" column="30" lean-forward="false" selection-start-line="139" selection-start-column="30" selection-end-line="139" selection-end-column="30" />
           <folding>
-            <element signature="e#47#56#0" expanded="true" />
+            <element signature="e#47#56#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -728,8 +763,8 @@
           <caret line="52" column="39" lean-forward="true" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
           <folding>
             <element signature="e#157#204#0" expanded="true" />
-            <element signature="e#4586#5054#0" expanded="false" />
-            <element signature="e#5094#5172#0" expanded="false" />
+            <element signature="e#4590#5058#0" expanded="false" />
+            <element signature="e#5098#5176#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -739,7 +774,7 @@
         <state relative-caret-position="2667">
           <caret line="139" column="30" lean-forward="true" selection-start-line="139" selection-start-column="30" selection-end-line="139" selection-end-column="30" />
           <folding>
-            <element signature="e#47#56#0" expanded="true" />
+            <element signature="e#47#56#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -766,7 +801,7 @@
         <state relative-caret-position="1302">
           <caret line="74" column="37" lean-forward="true" selection-start-line="74" selection-start-column="37" selection-end-line="74" selection-end-column="37" />
           <folding>
-            <element signature="e#47#56#0" expanded="true" />
+            <element signature="e#47#56#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -841,14 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/test_splitter_merger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://H:/Software/3D_Model/reduce_colors.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -869,16 +896,6 @@
         <state relative-caret-position="945">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/xmllabel2img/xmllabel2img.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="18" column="50" lean-forward="false" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
-          <folding>
-            <element signature="e#1#29#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -906,16 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utils/SegDataGenerator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="371" column="36" lean-forward="false" selection-start-line="371" selection-start-column="36" selection-end-line="371" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/utils/convert_masks.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -932,6 +939,82 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/xmllabel2img/image_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#31#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/test_image_seg_generator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="77" column="38" lean-forward="false" selection-start-line="77" selection-start-column="38" selection-end-line="77" selection-end-column="38" />
+          <folding>
+            <element signature="e#47#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xmllabel2img/xmllabel2img.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="131" column="0" lean-forward="false" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
+          <folding>
+            <element signature="e#1#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/utils/SegDataGenerator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-284">
+          <caret line="429" column="0" lean-forward="false" selection-start-line="429" selection-start-column="0" selection-end-line="429" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="622">
+          <caret line="215" column="0" lean-forward="false" selection-start-line="215" selection-start-column="0" selection-end-line="215" selection-end-column="0" />
+          <folding>
+            <element signature="e#47#56#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predict_from_folder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="250" column="53" lean-forward="false" selection-start-line="250" selection-start-column="53" selection-end-line="250" selection-end-column="74" />
+          <folding>
+            <element signature="e#157#204#0" expanded="true" />
+            <element signature="e#4590#5058#0" expanded="false" />
+            <element signature="e#5098#5176#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/utils/image_reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="23" column="11" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test_scripts/test_splitter_merger.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-144">
+          <caret line="13" column="37" lean-forward="true" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python35/Lib/site-packages/keras/preprocessing/image.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -940,52 +1023,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utils/image_reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1659">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test_scripts/test_image_seg_generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="116" column="0" lean-forward="false" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-          <folding>
-            <element signature="e#47#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/predict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="69" column="45" lean-forward="false" selection-start-line="69" selection-start-column="41" selection-end-line="69" selection-end-column="45" />
+        <state relative-caret-position="493">
+          <caret line="136" column="44" lean-forward="true" selection-start-line="136" selection-start-column="44" selection-end-line="136" selection-end-column="44" />
           <folding>
             <element signature="e#157#204#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="196" column="52" lean-forward="false" selection-start-line="196" selection-start-column="52" selection-end-line="196" selection-end-column="52" />
-          <folding>
-            <element signature="e#47#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predict_from_folder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="242" column="0" lean-forward="true" selection-start-line="242" selection-start-column="0" selection-end-line="242" selection-end-column="0" />
-          <folding>
-            <element signature="e#157#204#0" expanded="true" />
-            <element signature="e#4586#5054#0" expanded="false" />
-            <element signature="e#5094#5172#0" expanded="false" />
           </folding>
         </state>
       </provider>
