@@ -6,3 +6,6 @@
 /pretrained-models
 /training_data/*
 !/training_data/image_annotations_png
+
+images_test_previews/testfolder
+test_scripts/test_output

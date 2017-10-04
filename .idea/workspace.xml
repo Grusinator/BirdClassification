@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16566d4d-bd7d-4846-b7da-14b82d5320c2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/images_test_previews/296_before_crop_double_seg.png" afterPath="$PROJECT_DIR$/images_test_previews/296_before_crop_double_seg.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predict.py" afterPath="$PROJECT_DIR$/predict.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predict_from_folder.py" afterPath="$PROJECT_DIR$/predict_from_folder.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -101,11 +101,10 @@
           <file leaf-file-name="predict_from_folder.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/predict_from_folder.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-31">
-                  <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+                <state relative-caret-position="526">
+                  <caret line="138" column="40" lean-forward="true" selection-start-line="138" selection-start-column="40" selection-end-line="138" selection-end-column="40" />
                   <folding>
                     <element signature="e#157#204#0" expanded="true" />
-                    <element signature="e#4452#5491#0" expanded="false" />
                     <element signature="e#4681#5149#0" expanded="false" />
                     <element signature="e#5189#5267#0" expanded="false" />
                   </folding>
@@ -170,8 +169,8 @@
         <option value="$PROJECT_DIR$/test_scripts/test_image_seg_generator.py" />
         <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/lib/utils/image_reader.py" />
-        <option value="$PROJECT_DIR$/predict_from_folder.py" />
         <option value="$PROJECT_DIR$/predict.py" />
+        <option value="$PROJECT_DIR$/predict_from_folder.py" />
       </list>
     </option>
   </component>
@@ -642,7 +641,6 @@
           <caret line="73" column="48" lean-forward="false" selection-start-line="73" selection-start-column="48" selection-end-line="73" selection-end-column="48" />
           <folding>
             <element signature="e#157#204#0" expanded="true" />
-            <element signature="e#4452#5491#0" expanded="false" />
             <element signature="e#4681#5149#0" expanded="false" />
             <element signature="e#5189#5267#0" expanded="false" />
           </folding>
@@ -754,7 +752,6 @@
           <caret line="52" column="39" lean-forward="true" selection-start-line="52" selection-start-column="39" selection-end-line="52" selection-end-column="39" />
           <folding>
             <element signature="e#157#204#0" expanded="true" />
-            <element signature="e#4452#5491#0" expanded="false" />
             <element signature="e#4681#5149#0" expanded="false" />
             <element signature="e#5189#5267#0" expanded="false" />
           </folding>
@@ -1034,11 +1031,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/predict_from_folder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
-          <caret line="78" column="0" lean-forward="true" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="526">
+          <caret line="138" column="40" lean-forward="true" selection-start-line="138" selection-start-column="40" selection-end-line="138" selection-end-column="40" />
           <folding>
             <element signature="e#157#204#0" expanded="true" />
-            <element signature="e#4452#5491#0" expanded="false" />
             <element signature="e#4681#5149#0" expanded="false" />
             <element signature="e#5189#5267#0" expanded="false" />
           </folding>
