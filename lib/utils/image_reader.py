@@ -15,7 +15,10 @@ TransformParams = namedtuple(
     'TransformParameters',
     ('do_hor_flip', 'do_vert_flip'))
 
-pascal_mean = np.array([102.93, 111.36, 116.52])
+pascal_mean_old = np.array([102.93, 111.36, 116.52])
+
+pascal_mean = np.array([23.57490158, 75.17044067, 98.63441467])
+
 
 label_margin = 186
 

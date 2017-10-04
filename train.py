@@ -11,12 +11,12 @@ from keras import callbacks, optimizers
 from IPython import embed
 
 from model import get_frontend, add_softmax
-from utils.image_reader import (
+from lib.utils.image_reader import (
     RandomTransformer,
     SegmentationDataGenerator)
 
-h = 500
-w = 500
+from lib.utils.SegDataGenerator import SegDataGenerator
+
 
 
 def load_weights(model, weights_path):
@@ -80,27 +80,33 @@ def load_weights(model, weights_path):
 @click.option('--epochs', type=int, default=15)
 @click.option('--learning-rate', type=float, default=1e-4)
 
-def train(train_data_path, pretrained_path ,weights_save_path, batch_size,epochs, learning_rate):
+def train(train_data_path, pretrained_path ,weights_save_path,
+          batch_size,
+          epochs,
+          learning_rate,
+          target_size = (500,500),
+          classes=2,
+          loss_shape=None,
+          label_file_ext='.png',
+          data_file_ext='.jpg',
+          ignore_label=255,
+          label_cval=255):
+
+    loss_shape = (target_size[0]*target_size[1]*classes,)
 
     #create full paths
-    train_list_fname = os.path.join(train_data_path, "train.txt")
-    val_list_fname = os.path.join(train_data_path, "val.txt")
-    img_root = os.path.join(train_data_path, "img")
-    mask_root = os.path.join(train_data_path, "mask")
+    train_list_path = os.path.join(train_data_path, "train.txt")
+    val_list_path = os.path.join(train_data_path, "val.txt")
+    data_dir = os.path.join(train_data_path, "img")
+    label_dir = os.path.join(train_data_path, "mask")
 
-    # Create image generators for the training and validation sets. Validation has
-    # no data augmentation.
-    transformer_train = RandomTransformer(horizontal_flip=True, vertical_flip=True)
-    datagen_train = SegmentationDataGenerator(transformer_train)
-
-    transformer_val = RandomTransformer(horizontal_flip=False, vertical_flip=False)
-    datagen_val = SegmentationDataGenerator(transformer_val)
 
     train_desc = '{}-lr{:.0e}-bs{:03d}'.format(
         time.strftime("%Y-%m-%d %H.%M"),
         learning_rate,
         batch_size)
     checkpoints_folder = 'cnn-models/' + train_desc
+
     try:
         os.makedirs(checkpoints_folder)
     except OSError:
@@ -128,7 +134,7 @@ def train(train_data_path, pretrained_path ,weights_save_path, batch_size,epochs
         min_lr=0.05 * learning_rate)
 
     model = add_softmax(
-        get_frontend(w, h))
+        get_frontend(*target_size)) #(w,h))
 
     load_weights(model, pretrained_path)
 
@@ -138,12 +144,12 @@ def train(train_data_path, pretrained_path ,weights_save_path, batch_size,epochs
 
     # Build absolute image paths
     def build_abs_paths(basenames):
-        img_fnames = [os.path.join(img_root, f) + '.jpg' for f in basenames]
-        mask_fnames = [os.path.join(mask_root, f) + '.png' for f in basenames]
+        img_fnames = [os.path.join(data_dir, f) + data_file_ext for f in basenames]
+        mask_fnames = [os.path.join(label_dir, f) + label_file_ext for f in basenames]
         return img_fnames, mask_fnames
 
-    train_basenames = [l.strip() for l in open(train_list_fname).readlines()]
-    val_basenames = [l.strip() for l in open(val_list_fname).readlines()][:500]
+    train_basenames = [l.strip() for l in open(train_list_path).readlines()]
+    val_basenames = [l.strip() for l in open(val_list_path).readlines()][:500]
 
     train_img_fnames, train_mask_fnames = build_abs_paths(train_basenames)
     val_img_fnames, val_mask_fnames = build_abs_paths(val_basenames)
@@ -158,41 +164,116 @@ def train(train_data_path, pretrained_path ,weights_save_path, batch_size,epochs
     #     if not os.path.exists(fnames):
     #         val_img_fnames.remove(fnames)
     #         print("removed: " + fnames)
+    
+
+    # Create image generators for the training and validation sets. Validation has
+    # no data augmentation.
+    transformer_train = RandomTransformer(horizontal_flip=True, vertical_flip=True)
+    datagen_train = SegmentationDataGenerator(transformer_train)
 
 
+    datagen_train2 = SegDataGenerator(zoom_range=2,#[0.5, 2.0],
+                                     #zoom_maintain_shape=True,
+                                     #crop_mode='center',
+                                     crop_mode='random',
+                                     crop_size=target_size,
+                                     # pad_size=(505, 505),
+                                     rotation_range=0.,
+                                     shear_range=0,
+                                     horizontal_flip=True,
+                                     #channel_shift_range=20.,
+                                     fill_mode='constant',
+                                     label_cval=label_cval)
+
+
+
+    transformer_val = RandomTransformer(horizontal_flip=False, vertical_flip=False)
+    datagen_val = SegmentationDataGenerator(transformer_val)
+
+
+
+
+    
     skipped_report_cback = callbacks.LambdaCallback(
         on_epoch_end=lambda a, b: open(
             '{}/skipped.txt'.format(checkpoints_folder), 'a').write(
             '{}\n'.format(datagen_train.skipped_count)))
 
-    print(batch_size)
-    print(len(train_img_fnames))
+    #generator from keras-fcn
+    generator2 = datagen_train2.flow_from_directory(
+            file_path=train_list_path,
+            data_dir=data_dir, data_suffix=data_file_ext,
+            label_dir=label_dir, label_suffix=label_file_ext,
+            classes=classes,
+            target_size=target_size, color_mode='rgb',
+            batch_size=batch_size, shuffle=True,
+            loss_shape=loss_shape,
+            ignore_label=ignore_label,
+            # save_to_dir='Images/'
+        )
 
-    model.fit_generator(
-        datagen_train.flow_from_list(
+
+
+    #generator from original 
+    generator = datagen_train.flow_from_list(
             train_img_fnames,
             train_mask_fnames,
             shuffle=True,
             batch_size=batch_size,
-            img_target_size=(w, h),
-            mask_target_size=(16, 16)),
-        verbose=1,
-        steps_per_epoch=len(train_img_fnames),
-        nb_epoch=epochs,
-        validation_data=datagen_val.flow_from_list(
+            img_target_size=target_size,
+            mask_target_size=(16, 16))
+
+
+    validation_data = datagen_val.flow_from_list(
             val_img_fnames,
             val_mask_fnames,
             batch_size=5,
-            img_target_size=(w, h),
-            mask_target_size=(16, 16)),
-        validation_steps=len(val_img_fnames),
-        callbacks=[
+            img_target_size=target_size,
+            mask_target_size=(16, 16))
+
+    callback_list = [
             model_checkpoint,
             tensorboard_cback,
             csv_log_cback,
             reduce_lr_cback,
             skipped_report_cback,
-        ])
+        ]
+
+    model.fit_generator(
+        generator=generator,
+        verbose=1,
+        steps_per_epoch=len(train_img_fnames),
+        epochs=epochs,
+        validation_data=validation_data,
+        validation_steps=len(val_img_fnames),
+        callbacks=callback_list)
+
+    # model.fit_generator(
+    #     datagen_train.flow_from_list(
+    #         train_img_fnames,
+    #         train_mask_fnames,
+    #         shuffle=True,
+    #         batch_size=batch_size,
+    #         img_target_size=(w, h),
+    #         mask_target_size=(16, 16)),
+    #     verbose=1,
+    #     steps_per_epoch=len(train_img_fnames),
+    #     nb_epoch=epochs,
+    #     validation_data=datagen_val.flow_from_list(
+    #         val_img_fnames,
+    #         val_mask_fnames,
+    #         batch_size=5,
+    #         img_target_size=(w, h),
+    #         mask_target_size=(16, 16)),
+    #     validation_steps=len(val_img_fnames),
+    #     callbacks=[
+    #         model_checkpoint,
+    #         tensorboard_cback,
+    #         csv_log_cback,
+    #         reduce_lr_cback,
+    #         skipped_report_cback,
+    #     ])
+
 
     model.save_weights(weights_save_path)
 

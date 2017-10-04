@@ -248,7 +248,7 @@ def main():
                         help='Required path to input image folder')
     parser.add_argument('--output_path', default='validation_data/test1/results',
                         help='Path to segmented image')
-    parser.add_argument('--mean', nargs='*', default=[ 23.57490158, 75.17044067, 98.63441467],
+    parser.add_argument('--mean', nargs='*', default=[23.57490158, 75.17044067, 98.63441467],
                         help='Mean pixel value (BGR) for the dataset.\n'
                              'Default is the mean pixel of PASCAL dataset.')
     parser.add_argument('--zoom', default=8, type=int,
