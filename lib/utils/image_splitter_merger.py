@@ -1,5 +1,6 @@
 from PIL import Image
 import math
+from numpy import ndarray
 import os
 
 
@@ -31,15 +32,20 @@ class image_splitter_merger():
 
 
     def image_merger(self, image_list):
+
         new_im = Image.new('RGB', (self.in_w, self.in_h))
         index = 0
         for image in image_list:
+
 
             offset = self._index2imageoffset(index)
 
             offset = self._substract_half_buffer(offset)
 
             bbox = self._index2bbox_half_buffer_on_subimage(index)
+
+            #make sure its a pil Image
+            image = self._toPILImage(image)
 
             new_im.paste(image.crop(bbox), offset)
 
@@ -88,7 +94,10 @@ class image_splitter_merger():
         return bbox
 
     def _toPILImage(self, array):
-        return Image.fromarray(array.astype('uint8'), 'RGB')
+        if isinstance(array, Image.Image):
+            return array
+        elif isinstance(array, ndarray):
+            return Image.fromarray(array.astype('uint8'), 'RGB')
 
 
 

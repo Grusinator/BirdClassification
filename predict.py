@@ -27,7 +27,7 @@ label_margin = 186
 
 has_context_module = False
 
-def get_trained_model(args):
+def get_trained_model(weights_path):
     """ Returns a model with loaded weights. """
 
     model = get_frontend(input_width, input_height)
@@ -41,7 +41,7 @@ def get_trained_model(args):
         """ Load pretrained weights converted from Caffe to TF. """
 
         # 'latin1' enables loading .npy files created with python2
-        weights_data = np.load(args.weights_path, encoding='latin1').item()
+        weights_data = np.load(weights_path, encoding='latin1').item()
 
         for layer in model.layers:
             if layer.name in weights_data.keys():
@@ -51,11 +51,11 @@ def get_trained_model(args):
 
     def load_keras_weights():
         """ Load a Keras checkpoint. """
-        model.load_weights(args.weights_path)
+        model.load_weights(weights_path)
 
-    if args.weights_path.endswith('.npy'):
+    if weights_path.endswith('.npy'):
         load_tf_weights()
-    elif args.weights_path.endswith('.hdf5'):
+    elif weights_path.endswith('.hdf5'):
         load_keras_weights()
     else:
         raise Exception("Unknown weights format.")
@@ -66,7 +66,7 @@ def get_trained_model(args):
 def forward_pass(args):
     ''' Runs a forward pass to segment the image. '''
 
-    model = get_trained_model(args)
+    model = get_trained_model(args.weights_path)
 
     # Load image and swap RGB -> BGR to match the trained weights
     image_rgb = np.array(Image.open(args.input_path)).astype(np.float32)
@@ -189,10 +189,76 @@ def predict_image(image, model):
 
     return color_image
 
+def predict_single_image(input_path, output_path, model, mean, input_size):
+    image_rgb = np.array(Image.open(input_path)).astype(np.float32)
+
+    ism = image_splitter_merger(input_size)
+
+    # devide input image into suitable prediction sizes
+    subimg_list = ism.image_splitter(Image.open(input_path))
+
+    trans_subimg_list = [transform_image(subimg, mean=mean) for subimg in subimg_list]
+
+    # predict on each image
+    annotatedimg_list = [predict_image(subimg,model=model) for subimg in trans_subimg_list]
+
+    #merge to one image again
+    annotated_image = ism.image_merger(annotatedimg_list)
+
+    if not output_path:
+        dir_name, file_name = os.path.split(input_path)
+        output_path = os.path.join(
+            dir_name,
+            '{}_seg.png'.format(
+                os.path.splitext(file_name)[0]))
+    elif os.path.isdir(output_path):
+        dir_name, file_name = os.path.split(input_path)
+        output_path = os.path.join(
+            output_path,
+            '{}_seg.png'.format(
+                os.path.splitext(file_name)[0]))
+    elif output_path.lower().endswith(('.png', '.jpg', '.jpeg')):
+        pass
+    else:
+        print("something is wrong here fix...")
+
+    #save image in output folder
+    print('Saving results to: ', output_path)
+    with open(output_path, 'wb') as out_file:
+        annotated_image.save(out_file)
+
+
 def toPILImage(array):
     return Image.fromarray(array.astype('uint8'), 'RGB')
 
-def predict_from_folder(args):
+
+def read_input_folder(folder):
+    filelist = []
+    for file in os.listdir(folder):
+        if file.endswith(".png") | file.endswith(".jpg"):
+            filelist.append(os.path.join(folder, file))
+    return filelist
+
+def get_base_filename(path):
+    base = os.path.basename(path)
+    return os.path.splitext(base)[0]
+
+def predict_from_folder(input_path, output_path, model, mean, input_size):
+
+    input_list = read_input_folder(input_path)
+
+    if output_path is None:
+        output_path = input_path
+
+    for input_image_path in input_list:
+
+        print("predicting image: "+ get_base_filename(input_image_path))
+
+        output_image_path = os.path.join(output_path, get_base_filename(input_image_path) + "_seg.png")
+
+        predict_single_image(input_image_path, output_image_path,model,mean, input_size)
+
+def predict_multiple_from_folder(args):
 
     model = get_trained_model(args)
 
@@ -220,34 +286,40 @@ def predict_from_folder(args):
     #save image in output folder
     print('Saving results to: ', args.output_path)
     with open(args.output_path, 'wb') as out_file:
-        Image.fromarray(annotated_image).save(out_file)
+        annotated_image.save(out_file)
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('input_path', nargs='?', default='images_test_previews/296_before_crop_double.jpg',
+    parser.add_argument('--input_path', nargs='?', default='images_test_previews/testfolder/',#296_before_crop_double.jpg',
                         help='Required path to input image')
     parser.add_argument('--output_path', default=None,
                         help='Path to segmented image')
-    parser.add_argument('--mean', nargs='*', default=[102.93, 111.36, 116.52],
+    parser.add_argument('--mean', nargs='*', default=\
+                        [98.63, 75.17, 23.57], #birds
+                        #[102.93, 111.36, 116.52], #PASCAL
                         help='Mean pixel value (BGR) for the dataset.\n'
                              'Default is the mean pixel of PASCAL dataset.')
-    parser.add_argument('--zoom', default=8, type=int,
-                        help='Upscaling factor')
-    parser.add_argument('--weights_path', default='cnn-models/ep10-vl0.0908.hdf5', #'./dilation_pascal16.npy',
+    # parser.add_argument('--zoom', default=8, type=int,
+    #                     help='Upscaling factor')
+    parser.add_argument('--weights_path', default='cnn-models/latest.hdf5',
+                        #'cnn-models/ep10-vl0.0908.hdf5',
+                        # #'./dilation_pascal16.npy',
                         help='Weights file')
+    parser.add_argument('--input_size', default=(500,500),
+                        help='max input size of classifier')
 
     args = parser.parse_args()
 
-    if not args.output_path:
-        dir_name, file_name = os.path.split(args.input_path)
-        args.output_path = os.path.join(
-            dir_name,
-            '{}_seg.png'.format(
-                os.path.splitext(file_name)[0]))
+    model = get_trained_model(args.weights_path)
 
-    #forward_pass(args)
+    if os.path.isfile(args.input_path):
+        predict_single_image(args.input_path, args.output_path, model, args.mean, args.input_size)
+    elif os.path.isdir(args.input_path):
+        predict_from_folder(args.input_path, args.output_path, model, args.mean, args.input_size)
+    else:
+        print("Does it exist?  Is it a file, or a directory?")
 
-    predict_from_folder(args)
+    print("done!")
 
 
 if __name__ == "__main__":
