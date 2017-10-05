@@ -10,6 +10,7 @@ from __future__ import print_function, division
 
 import argparse
 import os
+from progress.bar import Bar
 
 import numpy as np
 from PIL import Image
@@ -63,81 +64,23 @@ def get_trained_model(weights_path):
     return model
 
 
-def forward_pass(args):
-    ''' Runs a forward pass to segment the image. '''
-
-    model = get_trained_model(args.weights_path)
-
-    # Load image and swap RGB -> BGR to match the trained weights
-    image_rgb = np.array(Image.open(args.input_path)).astype(np.float32)
-    image = image_rgb[:, :, ::-1] - args.mean
-    image_size = image.shape
-
-    # Network input shape (batch_size=1)
-    net_in = np.zeros((1, input_height, input_width, 3), dtype=np.float32)
-
-    output_height = input_height - 2 * label_margin
-    output_width = input_width - 2 * label_margin
-
-    # This simplified prediction code is correct only if the output
-    # size is large enough to cover the input without tiling
-    assert image_size[0] < output_height
-    assert image_size[1] < output_width
-
-    # Center pad the original image by label_margin.
-    # This initial pad adds the context required for the prediction
-    # according to the preprocessing during training.
-    image = np.pad(image,
-                   ((label_margin, label_margin),
-                    (label_margin, label_margin),
-                    (0, 0)), 'reflect')
-
-    # Add the remaining margin to fill the network input width. This
-    # time the image is aligned to the upper left corner though.
-    margins_h = (0, input_height - image.shape[0])
-    margins_w = (0, input_width - image.shape[1])
-    image = np.pad(image,
-                   (margins_h,
-                    margins_w,
-                    (0, 0)), 'reflect')
-
-    # Run inference
-    net_in[0] = image
-    prob = model.predict(net_in)[0]
-
-    # Reshape to 2d here since the networks outputs a flat array per channel
-    prob_edge = np.sqrt(prob.shape[0]).astype(np.int)
-    prob = prob.reshape((prob_edge, prob_edge, 21))
-
-    # Upsample
-    if args.zoom > 1:
-        prob = interp_map(prob, args.zoom, image_size[1], image_size[0])
-
-    # Recover the most likely prediction (actual segment class)
-    prediction = np.argmax(prob, axis=2)
-
-    # Apply the color palette to the segmented image
-    color_image = np.array(pascal_palette)[prediction.ravel()].reshape(
-        prediction.shape + (3,))
-
-    print('Saving results to: ', args.output_path)
-    with open(args.output_path, 'wb') as out_file:
-        Image.fromarray(color_image).save(out_file)
-
-
 def transform_image(image, mean = [0, 0, 0]):
     # Load image and swap RGB -> BGR to match the trained weights
     try:
         image_rgb = np.array(image).astype(np.float32)
     except TypeError as e:
         print("not valid type")
+        return
 
     image = image_rgb[:, :, ::-1] - mean
     return image
 
-def predict_image(image, model):
+def predict_image(image, model,pgbar = None):
     print(".", end=" ")
     image_size = image.shape
+
+    if pgbar != None:
+        pgbar.next()
 
     # Network input shape (batch_size=1)
     net_in = np.zeros((1, input_height, input_width, 3), dtype=np.float32)
@@ -190,7 +133,6 @@ def predict_image(image, model):
     return color_image
 
 def predict_single_image(input_path, output_path, model, mean, input_size):
-    image_rgb = np.array(Image.open(input_path)).astype(np.float32)
 
     ism = image_splitter_merger(input_size)
 
@@ -199,9 +141,11 @@ def predict_single_image(input_path, output_path, model, mean, input_size):
 
     trans_subimg_list = [transform_image(subimg, mean=mean) for subimg in subimg_list]
 
-    # predict on each image
-    annotatedimg_list = [predict_image(subimg,model=model) for subimg in trans_subimg_list]
+    bar = Bar('Processing', max=len(subimg_list))
 
+    # predict on each image
+    annotatedimg_list = [predict_image(subimg,model=model,pgbar=bar) for subimg in trans_subimg_list]
+    bar.finish()
     #merge to one image again
     annotated_image = ism.image_merger(annotatedimg_list)
 
@@ -258,41 +202,11 @@ def predict_from_folder(input_path, output_path, model, mean, input_size):
 
         predict_single_image(input_image_path, output_image_path,model,mean, input_size)
 
-def predict_multiple_from_folder(args):
-
-    model = get_trained_model(args)
-
-    image_rgb = np.array(Image.open(args.input_path)).astype(np.float32)
-
-    ism = image_splitter_merger((500,500))
-
-    # devide input image into suitable prediction sizes
-    subimg_list = ism.image_splitter(Image.open(args.input_path))
-
-    max_size = (500, 500)
-
-    subimg = transform_image(subimg_list[0], mean=args.mean)
-
-    # predict on each image
-    annotatedimg = predict_image(subimg,model=model)
-
-    subimg2 = transform_image(subimg_list[1], mean=args.mean)
-
-    # predict on each image
-    annotatedimg2 = predict_image(subimg2,model=model)
-
-    annotated_image = ism.image_merger(map(toPILImage, [annotatedimg, annotatedimg2]))
-
-    #save image in output folder
-    print('Saving results to: ', args.output_path)
-    with open(args.output_path, 'wb') as out_file:
-        annotated_image.save(out_file)
-
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_path', nargs='?', default='images_test_previews/testfolder/',#296_before_crop_double.jpg',
+    parser.add_argument('--input_path', nargs='?', default='evaluation/input/',#296_before_crop_double.jpg',
                         help='Required path to input image')
-    parser.add_argument('--output_path', default=None,
+    parser.add_argument('--output_path', default='evaluation/output/',
                         help='Path to segmented image')
     parser.add_argument('--mean', nargs='*', default=\
                         [98.63, 75.17, 23.57], #birds
