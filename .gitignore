@@ -9,5 +9,9 @@
 
 images_test_previews/testfolder
 test_scripts/test_output
-evaluation/*
+
+evaluation/input/*
+evaluation/output/*
 validation_data/*
+
+
