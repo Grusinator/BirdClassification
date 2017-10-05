@@ -2,95 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16566d4d-bd7d-4846-b7da-14b82d5320c2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predict_on_gcloud.bat" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/0_after_170802_0170.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/0_before_170802_0169.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/100_after_170802_1111.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/100_before_170802_1110.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/101_after_170802_1170.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/101_before_170802_1169.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/102_after_170802_1262.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/102_before_170802_1261.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/103_after_170802_1265.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/103_before_170802_1264.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/104_after_170802_1263.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/104_before_170802_1262.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/105_after_170802_1273.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/105_before_170802_1272.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/106_after_170802_1302.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/106_before_170802_1301.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/111_after_170802_1694.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/111_before_170802_1693.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/112_after_170802_1693.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/112_before_170802_1692.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/113_after_170802_1693.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/113_before_170802_1692.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/115_after_170802_1670.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/115_before_170802_1669.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/116_after_170802_1671.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/116_before_170802_1670.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/117_after_170802_1671.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/117_before_170802_1670.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/118_after_170802_1657.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/118_before_170802_1656.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/119_after_170802_1601.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/11_after_170802_4873.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/11_before_170802_4872.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/120_after_170802_1597.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/120_before_170802_1596.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/121_after_170802_1472.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/121_before_170802_1471.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/122_after_170802_1472.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/122_before_170802_1471.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/123_before_170802_2011.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/124_after_170802_2014.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/124_before_170802_2013.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/125_before_170802_2022.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/126_after_170802_2025.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/126_before_170802_2024.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/127_before_170802_2032.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/128_after_170802_2113.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/128_before_170802_2112.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/129_after_170802_2496.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/129_before_170802_2495.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/12_before_170802_4904.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/132_after_170802_2495.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/132_before_170802_2494.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/133_after_170802_3015.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/133_before_170802_3014.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/134_after_170802_3005.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/134_before_170802_3004.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/135_after_170802_3004.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/135_before_170802_3003.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/136_after_170802_3004.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/136_before_170802_3003.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/137_after_170802_3004.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/137_before_170802_3003.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/138_after_170802_3004.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/138_before_170802_3003.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/139_after_170802_3004.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/139_before_170802_3003.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/13_after_170802_4906.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/13_before_170802_4905.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/140_after_170802_3004.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/140_before_170802_3003.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/14_before_170802_4905.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/150_after_170802_3002.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/150_before_170802_3001.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/151_after_170802_3002.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/152_after_170802_2999.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/152_before_170802_2998.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/153_after_170802_3002.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/153_before_170802_3001.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/154_after_170802_3001.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/154_before_170802_3000.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/155_after_170802_3000.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/155_before_170802_2999.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/156_after_170802_2999.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/156_before_170802_2998.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/157_after_170802_2999.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/validation_data/test2_dag2/results/158_after_170802_2999.jpg" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/predict_local.sh" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predict_on_gcloud.bat" afterPath="$PROJECT_DIR$/predict_on_gcloud.bat" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/connect_to_jupyter_on_gcloud.bat" afterPath="$PROJECT_DIR$/connect_to_jupyter_on_gcloud.cmd" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/convert_labels_to_masks.bat" afterPath="$PROJECT_DIR$/convert_labels_to_masks.cmd" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/copy_images_FROM_gcloud.bat" afterPath="$PROJECT_DIR$/copy_images_FROM_gcloud.cmd" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/copy_images_TO_gcloud.bat" afterPath="$PROJECT_DIR$/copy_images_TO_gcloud.cmd" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -114,8 +32,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="copy_images_TO_gcloud.bat" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/copy_images_TO_gcloud.bat">
+      <file leaf-file-name="copy_images_TO_gcloud.cmd" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/copy_images_TO_gcloud.cmd">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="126">
               <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
@@ -124,8 +42,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connect_to_jupyter_on_gcloud.bat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/connect_to_jupyter_on_gcloud.bat">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="connect_to_jupyter_on_gcloud.cmd" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/connect_to_jupyter_on_gcloud.cmd">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="231">
               <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="50" />
@@ -134,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="copy_images_FROM_gcloud.bat" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/copy_images_FROM_gcloud.bat">
+      <file leaf-file-name="copy_images_FROM_gcloud.cmd" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/copy_images_FROM_gcloud.cmd">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="84">
+              <caret line="4" column="109" lean-forward="false" selection-start-line="4" selection-start-column="109" selection-end-line="4" selection-end-column="109" />
               <folding />
             </state>
           </provider>
@@ -147,8 +75,28 @@
       <file leaf-file-name="predict_on_gcloud.bat" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predict_on_gcloud.bat">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="94" lean-forward="true" selection-start-line="5" selection-start-column="94" selection-end-line="5" selection-end-column="94" />
+            <state relative-caret-position="63">
+              <caret line="3" column="51" lean-forward="false" selection-start-line="3" selection-start-column="51" selection-end-line="4" selection-end-column="98" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="predict_local.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/predict_local.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="4" column="86" lean-forward="true" selection-start-line="4" selection-start-column="86" selection-end-line="4" selection-end-column="86" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="convert_labels_to_masks.cmd" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/convert_labels_to_masks.cmd">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -164,28 +112,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="image_splitter_merger.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/utils/image_splitter_merger.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1995">
-              <caret line="98" column="40" lean-forward="false" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="image_reader.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/utils/image_reader.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="51" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="predict_from_folder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/predict_from_folder.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -196,16 +122,6 @@
                 <element signature="e#4648#5116#0" expanded="false" />
                 <element signature="e#5156#5234#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/Anaconda/envs/tensorflow/Lib/codecs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6510">
-              <caret line="310" column="0" lean-forward="false" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -271,8 +187,11 @@
         <option value="$PROJECT_DIR$/lib/utils/image_splitter_merger.py" />
         <option value="$PROJECT_DIR$/predict.py" />
         <option value="$PROJECT_DIR$/copy_images_from_gcloud_test.bat" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/copy_images_FROM_gcloud.bat" />
+        <option value="$PROJECT_DIR$/copy_images_TO_gcloud.bat" />
         <option value="$PROJECT_DIR$/predict_on_gcloud.bat" />
+        <option value="$PROJECT_DIR$/predict_local.sh" />
       </list>
     </option>
   </component>
@@ -317,6 +236,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -339,13 +260,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Geokodning_2016/53_SKAT_Soenderjylland/Forprojekt_bygningsklassificering_WSH" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="add_unversioned_files" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -568,16 +488,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1170" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1734694" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17615467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22597137" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1789366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1789366" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29038855" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33026585" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -705,20 +624,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/utils/image_splitter_merger.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="92" column="0" lean-forward="false" selection-start-line="92" selection-start-column="0" selection-end-line="92" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Anaconda/envs/tensorflow/Lib/site-packages/PIL/Image.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50169">
-          <caret line="2393" column="0" lean-forward="false" selection-start-line="2393" selection-start-column="0" selection-end-line="2393" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test_scripts/test_splitter_merger.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="567">
@@ -882,13 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/convert_labels_to_masks.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="30" lean-forward="false" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://H:/Software/3D_Model/reduce_colors.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
@@ -985,7 +883,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="23" column="21" lean-forward="false" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1000,7 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="882">
           <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,7 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="17" column="27" lean-forward="false" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1016,9 +911,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1995">
           <caret line="98" column="40" lean-forward="false" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1026,7 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6510">
           <caret line="310" column="0" lean-forward="false" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1061,15 +952,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/copy_images_FROM_gcloud.bat">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/connect_to_jupyter_on_gcloud.bat">
+    <entry file="file://$PROJECT_DIR$/connect_to_jupyter_on_gcloud.cmd">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="12" selection-end-column="50" />
@@ -1077,18 +960,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/predict_on_gcloud.bat">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="94" lean-forward="true" selection-start-line="5" selection-start-column="94" selection-end-line="5" selection-end-column="94" />
+        <state relative-caret-position="357">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/copy_images_TO_gcloud.bat">
+    <entry file="file://$PROJECT_DIR$/predict_on_gcloud.bat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="51" lean-forward="false" selection-start-line="3" selection-start-column="51" selection-end-line="4" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/copy_images_TO_gcloud.cmd">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="6" column="13" lean-forward="false" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/copy_images_FROM_gcloud.cmd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="109" lean-forward="false" selection-start-line="4" selection-start-column="109" selection-end-line="4" selection-end-column="109" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/convert_labels_to_masks.cmd">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/predict_local.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="86" lean-forward="true" selection-start-line="4" selection-start-column="86" selection-end-line="4" selection-end-column="86" />
           <folding />
         </state>
       </provider>
