@@ -142,6 +142,7 @@ def predict_batch_image(image_list, model,batch_size = 10, pgbar = None, input_s
     #if pgbar != None:
         #pgbar.next()
 
+    start_time = time.time()
     net_in_list = [pre(image, input_size) for image in image_list]
 
     input_data = np.concatenate(net_in_list, axis=0)
@@ -155,7 +156,12 @@ def predict_batch_image(image_list, model,batch_size = 10, pgbar = None, input_s
 
     image_size = image_list[0].shape
 
-    return [post(prob, image_size) for prob in prob_list]
+    start_time = time.time()
+    predict = [post(prob, image_size) for prob in prob_list]
+    duration = time.time() - start_time
+    print('{0:.2f}s used to make predictions.\n'.format(duration))
+
+    return predict
 
 def pre(image, input_size = None):
     image_size = image.shape
