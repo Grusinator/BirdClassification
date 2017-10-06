@@ -12,12 +12,12 @@ gcloud compute ssh root@ubuntu1604-4cpu-1gpu --command ^
 
 
 
-gcloud compute ssh ^
-	--ssh-flag="-N -L localhost:8888:localhost:8889" ^
-	--project "bird-classification" ^
-	--zone "europe-west1-d" ^
+REM gcloud compute ssh ^
+REM	--ssh-flag="-N -L localhost:8888:localhost:8889" ^
+REM	--project "bird-classification" ^
+REM	--zone "europe-west1-d" ^
 	REM --command ^
     REM "jupyter notebook --no-browser --port=8889 --allow-root " ^
-	"ubuntu1604-4cpu-1gpu"
+REM	"ubuntu1604-4cpu-1gpu"
 	
 pause

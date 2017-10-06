@@ -19,12 +19,14 @@ from IPython import embed
 from model import get_frontend, add_softmax, add_context
 from lib.utils import interp_map, pascal_palette
 
+import time
+
 
 from lib.utils.image_splitter_merger import image_splitter_merger
 
 # Settings for the Pascal dataset
-input_width, input_height = 900, 900
-label_margin = 186
+input_width, input_height = 500, 500
+label_margin = 0
 
 has_context_module = False
 
@@ -132,6 +134,86 @@ def predict_image(image, model,pgbar = None):
 
     return color_image
 
+
+
+def predict_batch_image(image_list, model,pgbar = None):
+
+    #here starts the function
+    #if pgbar != None:
+        #pgbar.next()
+
+    net_in_list = [pre(image) for image in image_list]
+
+    input_data = np.concatenate(net_in_list, axis=0)
+
+    start_time = time.time()
+    prob_list = model.predict(input_data,batch_size=len(input_data),verbose=1)
+
+    #prob_list = [model.predict(net_in,verbose=1)[0] for net_in in net_in_list]
+    duration = time.time() - start_time
+    print('{}s used to make predictions.\n'.format(duration))
+
+    image_size = image_list[0].shape
+
+    return [post(prob, image_size) for prob in prob_list]
+
+def pre(image):
+    image_size = image.shape
+
+    # Network input shape (batch_size=1)
+    net_in = np.zeros((1, input_height, input_width, 3), dtype=np.float32)
+
+    output_height = input_height - 2 * label_margin
+    output_width = input_width - 2 * label_margin
+
+    # This simplified prediction code is correct only if the output
+    # size is large enough to cover the input without tiling
+    assert image_size[0] < output_height
+    assert image_size[1] < output_width
+
+    # Center pad the original image by label_margin.
+    # This initial pad adds the context required for the prediction
+    # according to the preprocessing during training.
+    image = np.pad(image,
+                   ((label_margin, label_margin),
+                    (label_margin, label_margin),
+                    (0, 0)), 'reflect')
+
+    # Add the remaining margin to fill the network input width. This
+    # time the image is aligned to the upper left corner though.
+    margins_h = (0, input_height - image.shape[0])
+    margins_w = (0, input_width - image.shape[1])
+    image = np.pad(image,
+                   (margins_h,
+                    margins_w,
+                    (0, 0)), 'reflect')
+
+    # Run inference
+    net_in[0] = image
+
+    return net_in
+
+def post(prob, image_size):
+    # Reshape to 2d here since the networks outputs a flat array per channel
+    prob_edge = np.sqrt(prob.shape[0]).astype(np.int)
+    prob = prob.reshape((prob_edge, prob_edge, 21))
+
+    args_zoom = 8
+    # Upsample
+    if args_zoom > 1:
+        prob = interp_map(prob, args_zoom, image_size[1], image_size[0])
+
+    # Recover the most likely prediction (actual segment class)
+    prediction = np.argmax(prob, axis=2)
+
+    # Apply the color palette to the segmented image
+    color_image = np.array(pascal_palette)[prediction.ravel()].reshape(
+        prediction.shape + (3,))
+
+    return color_image
+
+
+
 def predict_single_image(input_path, output_path, model, mean, input_size):
 
     ism = image_splitter_merger(input_size)
@@ -143,8 +225,10 @@ def predict_single_image(input_path, output_path, model, mean, input_size):
 
     bar = Bar('Processing', max=len(subimg_list))
 
+
     # predict on each image
-    annotatedimg_list = [predict_image(subimg,model=model,pgbar=bar) for subimg in trans_subimg_list]
+    #annotatedimg_list = [predict_image(subimg,model=model,pgbar=bar) for subimg in trans_subimg_list]
+    annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,pgbar=bar)
     bar.finish()
     #merge to one image again
     annotated_image = ism.image_merger(annotatedimg_list)
