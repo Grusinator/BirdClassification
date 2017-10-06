@@ -25,8 +25,8 @@ import time
 from lib.utils.image_splitter_merger import image_splitter_merger
 
 # Settings for the Pascal dataset
-input_width, input_height = 600, 600
-label_margin = 45
+input_width, input_height = 900, 900
+label_margin = 186
 
 has_context_module = False
 
@@ -77,7 +77,7 @@ def transform_image(image, mean = [0, 0, 0]):
     image = image_rgb[:, :, ::-1] - mean
     return image
 
-def predict_image(image, model,pgbar = None):
+def predict_image(image, model,pgbar = None, input_size = None):
     print(".", end=" ")
     image_size = image.shape
 
@@ -229,13 +229,12 @@ def predict_single_image(input_path, output_path, model, mean, input_size):
 
     trans_subimg_list = [transform_image(subimg, mean=mean) for subimg in subimg_list]
 
-    bar = Bar('Processing', max=len(subimg_list))
-
+    #bar = Bar('Processing', max=len(subimg_list))
 
     # predict on each image
     #annotatedimg_list = [predict_image(subimg,model=model,pgbar=bar) for subimg in trans_subimg_list]
     annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,pgbar=bar,input_size=input_size)
-    bar.finish()
+    #bar.finish()
     #merge to one image again
     annotated_image = ism.image_merger(annotatedimg_list)
 
