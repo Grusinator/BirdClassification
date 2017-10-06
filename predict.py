@@ -25,8 +25,8 @@ import time
 from lib.utils.image_splitter_merger import image_splitter_merger
 
 # Settings for the Pascal dataset
-input_width, input_height = 500, 500
-label_margin = 0
+input_width, input_height = 600, 600
+label_margin = 45
 
 has_context_module = False
 
@@ -136,13 +136,13 @@ def predict_image(image, model,pgbar = None):
 
 
 
-def predict_batch_image(image_list, model,pgbar = None):
+def predict_batch_image(image_list, model,pgbar = None, input_size=None):
 
     #here starts the function
     #if pgbar != None:
         #pgbar.next()
 
-    net_in_list = [pre(image) for image in image_list]
+    net_in_list = [pre(image, input_size) for image in image_list]
 
     input_data = np.concatenate(net_in_list, axis=0)
 
@@ -157,41 +157,47 @@ def predict_batch_image(image_list, model,pgbar = None):
 
     return [post(prob, image_size) for prob in prob_list]
 
-def pre(image):
+def pre(image, input_size = None):
     image_size = image.shape
 
-    # Network input shape (batch_size=1)
-    net_in = np.zeros((1, input_height, input_width, 3), dtype=np.float32)
+    if any([img_s > input_s for img_s,input_s in zip(image_size, input_size)]):
+        print("input image is for some how reason bigger than the input model")
+        exit(2)
+    elif 0:#all([img_s == input_s for img_s,input_s in zip(image_size, input_size)]):
+        print("input image is the same size as model")
+        if len(image.shape) == 3:
+            image = np.expand_dims(image, axis=0)
+            return image
+    else:
+        # Network input shape (batch_size=1)
+        net_in = np.zeros((1, input_height, input_width, 3), dtype=np.float32)
 
-    output_height = input_height - 2 * label_margin
-    output_width = input_width - 2 * label_margin
+        output_height = input_height - 2 * label_margin
+        output_width = input_width - 2 * label_margin
 
-    # This simplified prediction code is correct only if the output
-    # size is large enough to cover the input without tiling
-    assert image_size[0] < output_height
-    assert image_size[1] < output_width
+        # This simplified prediction code is correct only if the output
+        # size is large enough to cover the input without tiling
+        assert image_size[0] < output_height
+        assert image_size[1] < output_width
 
-    # Center pad the original image by label_margin.
-    # This initial pad adds the context required for the prediction
-    # according to the preprocessing during training.
-    image = np.pad(image,
-                   ((label_margin, label_margin),
-                    (label_margin, label_margin),
-                    (0, 0)), 'reflect')
+        # Center pad the original image by label_margin.
+        # This initial pad adds the context required for the prediction
+        # according to the preprocessing during training.
+        image = np.pad(image,
+                       ((label_margin, label_margin),
+                        (label_margin, label_margin),
+                        (0, 0)), 'reflect')
 
-    # Add the remaining margin to fill the network input width. This
-    # time the image is aligned to the upper left corner though.
-    margins_h = (0, input_height - image.shape[0])
-    margins_w = (0, input_width - image.shape[1])
-    image = np.pad(image,
-                   (margins_h,
-                    margins_w,
-                    (0, 0)), 'reflect')
+        # Add the remaining margin to fill the network input width. This
+        # time the image is aligned to the upper left corner though.
+        margins_h = (0, input_height - image.shape[0])
+        margins_w = (0, input_width - image.shape[1])
+        image = np.pad(image,
+                       (margins_h,
+                        margins_w,
+                        (0, 0)), 'reflect')
 
-    # Run inference
-    net_in[0] = image
-
-    return net_in
+        return np.expand_dims(image, axis=0)
 
 def post(prob, image_size):
     # Reshape to 2d here since the networks outputs a flat array per channel
@@ -228,7 +234,7 @@ def predict_single_image(input_path, output_path, model, mean, input_size):
 
     # predict on each image
     #annotatedimg_list = [predict_image(subimg,model=model,pgbar=bar) for subimg in trans_subimg_list]
-    annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,pgbar=bar)
+    annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,pgbar=bar,input_size=input_size)
     bar.finish()
     #merge to one image again
     annotated_image = ism.image_merger(annotatedimg_list)
