@@ -17,8 +17,8 @@
       <file leaf-file-name="predict.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/predict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="153" column="61" lean-forward="true" selection-start-line="153" selection-start-column="61" selection-end-line="153" selection-end-column="61" />
+            <state relative-caret-position="235">
+              <caret line="84" column="13" lean-forward="false" selection-start-line="84" selection-start-column="10" selection-end-line="84" selection-end-column="13" />
               <folding>
                 <element signature="e#157#204#0" expanded="true" />
               </folding>
@@ -122,6 +122,7 @@
       <find>basename</find>
       <find>input_height</find>
       <find>predict_image</find>
+      <find>bar</find>
     </findStrings>
     <replaceStrings>
       <replace>data_dir</replace>
@@ -486,7 +487,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507292416333</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="test error3">
+      <created>1507292974301</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1507292974301</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1048,8 +1056,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/predict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="153" column="61" lean-forward="true" selection-start-line="153" selection-start-column="61" selection-end-line="153" selection-end-column="61" />
+        <state relative-caret-position="235">
+          <caret line="84" column="13" lean-forward="false" selection-start-line="84" selection-start-column="10" selection-end-line="84" selection-end-column="13" />
           <folding>
             <element signature="e#157#204#0" expanded="true" />
           </folding>

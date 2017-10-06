@@ -233,7 +233,7 @@ def predict_single_image(input_path, output_path, model, mean, input_size):
 
     # predict on each image
     #annotatedimg_list = [predict_image(subimg,model=model,pgbar=bar) for subimg in trans_subimg_list]
-    annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,pgbar=bar,input_size=input_size)
+    annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,input_size=input_size)
     #bar.finish()
     #merge to one image again
     annotated_image = ism.image_merger(annotatedimg_list)
