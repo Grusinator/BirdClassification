@@ -4,6 +4,7 @@
     <list default="true" id="16566d4d-bd7d-4846-b7da-14b82d5320c2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predict.py" afterPath="$PROJECT_DIR$/predict.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/predict_local.sh" afterPath="$PROJECT_DIR$/predict_local.sh" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +18,8 @@
       <file leaf-file-name="predict.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/predict.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="84" column="13" lean-forward="false" selection-start-line="84" selection-start-column="10" selection-end-line="84" selection-end-column="13" />
+            <state relative-caret-position="163">
+              <caret line="222" column="4" lean-forward="false" selection-start-line="222" selection-start-column="4" selection-end-line="222" selection-end-column="4" />
               <folding>
                 <element signature="e#157#204#0" expanded="true" />
               </folding>
@@ -76,6 +77,16 @@
               <folding>
                 <element signature="e#0#53#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="predict_local.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/predict_local.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="4" column="66" lean-forward="false" selection-start-line="4" selection-start-column="66" selection-end-line="4" selection-end-column="66" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -158,11 +169,11 @@
         <option value="$PROJECT_DIR$/predict_on_gcloud.bat" />
         <option value="$PROJECT_DIR$/copy_images_FROM_gcloud.cmd" />
         <option value="$PROJECT_DIR$/copy_latest_model.cmd" />
-        <option value="$PROJECT_DIR$/predict_local.sh" />
         <option value="$PROJECT_DIR$/connect_to_jupyter_on_gcloud_2.cmd" />
         <option value="$PROJECT_DIR$/connect_to_jupyter_on_gcloud.cmd" />
         <option value="$PROJECT_DIR$/test_scripts/test_exit_code_3.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/predict_local.sh" />
         <option value="$PROJECT_DIR$/predict.py" />
       </list>
     </option>
@@ -494,7 +505,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507292974301</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="test error3">
+      <created>1507293047786</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1507293047786</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -641,12 +659,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/predict.py</url>
-          <line>318</line>
+          <line>320</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/predict.py</url>
-          <line>320</line>
+          <line>322</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
       </breakpoints>
@@ -946,14 +964,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/predict_local.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/connect_to_jupyter_on_gcloud_2.cmd">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1054,10 +1064,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/predict_local.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="66" lean-forward="false" selection-start-line="4" selection-start-column="66" selection-end-line="4" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/predict.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="84" column="13" lean-forward="false" selection-start-line="84" selection-start-column="10" selection-end-line="84" selection-end-column="13" />
+        <state relative-caret-position="163">
+          <caret line="222" column="4" lean-forward="false" selection-start-line="222" selection-start-column="4" selection-end-line="222" selection-end-column="4" />
           <folding>
             <element signature="e#157#204#0" expanded="true" />
           </folding>

@@ -136,7 +136,7 @@ def predict_image(image, model,pgbar = None, input_size = None):
 
 
 
-def predict_batch_image(image_list, model,pgbar = None, input_size=None):
+def predict_batch_image(image_list, model,batch_size = 10, pgbar = None, input_size=None):
 
     #here starts the function
     #if pgbar != None:
@@ -147,7 +147,7 @@ def predict_batch_image(image_list, model,pgbar = None, input_size=None):
     input_data = np.concatenate(net_in_list, axis=0)
 
     start_time = time.time()
-    prob_list = model.predict(input_data,batch_size=len(input_data),verbose=1)
+    prob_list = model.predict(input_data,batch_size=batch_size,verbose=1)
 
     #prob_list = [model.predict(net_in,verbose=1)[0] for net_in in net_in_list]
     duration = time.time() - start_time
@@ -220,7 +220,7 @@ def post(prob, image_size):
 
 
 
-def predict_single_image(input_path, output_path, model, mean, input_size):
+def predict_single_image(input_path, output_path, model, mean, input_size, batch_size):
 
     ism = image_splitter_merger(input_size)
 
@@ -233,7 +233,7 @@ def predict_single_image(input_path, output_path, model, mean, input_size):
 
     # predict on each image
     #annotatedimg_list = [predict_image(subimg,model=model,pgbar=bar) for subimg in trans_subimg_list]
-    annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,input_size=input_size)
+    annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,input_size=input_size, batch_size = batch_size)
     #bar.finish()
     #merge to one image again
     annotated_image = ism.image_merger(annotatedimg_list)
@@ -276,7 +276,7 @@ def get_base_filename(path):
     base = os.path.basename(path)
     return os.path.splitext(base)[0]
 
-def predict_from_folder(input_path, output_path, model, mean, input_size):
+def predict_from_folder(input_path, output_path, model, mean, input_size, batch_size):
 
     input_list = read_input_folder(input_path)
 
@@ -289,13 +289,13 @@ def predict_from_folder(input_path, output_path, model, mean, input_size):
 
         output_image_path = os.path.join(output_path, get_base_filename(input_image_path) + "_seg.png")
 
-        predict_single_image(input_image_path, output_image_path,model,mean, input_size)
+        predict_single_image(input_image_path, output_image_path,model,mean, input_size, batch_size)
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_path', nargs='?', default='evaluation/input/',#296_before_crop_double.jpg',
+    parser.add_argument('--input-path', nargs='?', default='evaluation/input/',#296_before_crop_double.jpg',
                         help='Required path to input image')
-    parser.add_argument('--output_path', default='evaluation/output/',
+    parser.add_argument('--output-path', default='evaluation/output/',
                         help='Path to segmented image')
     parser.add_argument('--mean', nargs='*', default=\
                         [98.63, 75.17, 23.57], #birds
@@ -304,21 +304,23 @@ def main():
                              'Default is the mean pixel of PASCAL dataset.')
     # parser.add_argument('--zoom', default=8, type=int,
     #                     help='Upscaling factor')
-    parser.add_argument('--weights_path', default='cnn-models/latest.hdf5',
+    parser.add_argument('--weights-path', default='cnn-models/latest.hdf5',
                         #'cnn-models/ep10-vl0.0908.hdf5',
                         # #'./dilation_pascal16.npy',
                         help='Weights file')
     parser.add_argument('--input_size', default=(500,500),
                         help='max input size of classifier')
+    parser.add_argument('--batch-size', default=10,
+                        help='patch size for prediction')
 
     args = parser.parse_args()
 
     model = get_trained_model(args.weights_path)
 
     if os.path.isfile(args.input_path):
-        predict_single_image(args.input_path, args.output_path, model, args.mean, args.input_size)
+        predict_single_image(args.input_path, args.output_path, model, args.mean, args.input_size, args.batch_size)
     elif os.path.isdir(args.input_path):
-        predict_from_folder(args.input_path, args.output_path, model, args.mean, args.input_size)
+        predict_from_folder(args.input_path, args.output_path, model, args.mean, args.input_size, args.batch_size)
     else:
         print("Does it exist?  Is it a file, or a directory?")
 
