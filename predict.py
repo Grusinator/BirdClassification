@@ -127,15 +127,21 @@ def predict_image(image, model,pgbar = None, input_size = None):
 
     args_zoom = 8
     #Upsample
-    #if args_zoom > 1:
-    #  prob = interp_map(prob, args_zoom, image_size[1], image_size[0])
 
+    # start_time = time.time()
+    # if args_zoom > 1:
+    #     prob1 = interp_map(prob, args_zoom, image_size[1], image_size[0])
+    # duration = time.time() - start_time
+    # print("old: %d.2" %duration)
+    #
+    # prediction1 = np.argmax(prob1, axis=2)
 
-    prediction1 = np.argmax(prob, axis=2)
-
-    prob = Image.fromarray(prediction1.astype(dtype=np.uint8))
-
-    prediction2 = imresize(arr=prob,size=(input_size[0],input_size[1]),interp='bilinear')
+    prob2 = np.argmax(prob, axis=2)
+    start_time = time.time()
+    prob2 = Image.fromarray(prob2.astype(dtype=np.uint8))
+    prediction2 = imresize(arr=prob2,size=(image_size[0],image_size[1]),interp='bilinear')
+    duration = time.time() - start_time
+    print("scipy: %d.2" % duration)
 
     prediction = prediction2
 
@@ -229,7 +235,6 @@ def post(prob, image_size):
     #if args_zoom > 1:
     #    prob = interp_map(prob, args_zoom, image_size[1], image_size[0])
 
-    prob = imresize(arr=prob, size=(500, 500), interp='bilinear')
 
     # Recover the most likely prediction (actual segment class)
     prob = np.argmax(prob, axis=2)
