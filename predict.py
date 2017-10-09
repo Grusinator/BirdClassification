@@ -261,9 +261,14 @@ def predict_single_image(input_path, output_path, model, mean, input_size, batch
     trans_subimg_list = [transform_image(subimg, mean=mean) for subimg in subimg_list]
 
 
+    try:
+        CN = os.environ['COMPUTERNAME']
+    except:
+        print("on gcloud!")
+
 
     # predict on each image
-    if os.environ['COMPUTERNAME'] == "PC120309":
+    if CN == "PC120309":
         # bar = Bar('Processing', max=len(subimg_list))
         annotatedimg_list = [predict_image(subimg,model=model) for subimg in trans_subimg_list]
         # bar.finish()
