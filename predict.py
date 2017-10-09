@@ -14,10 +14,15 @@ from progress.bar import Bar
 
 import numpy as np
 from PIL import Image
+from scipy.misc import imresize
+
 from IPython import embed
 
 from model import get_frontend, add_softmax, add_context
 from lib.utils import interp_map, pascal_palette
+
+
+
 
 import time
 
@@ -122,11 +127,20 @@ def predict_image(image, model,pgbar = None, input_size = None):
 
     args_zoom = 8
     #Upsample
-    if args_zoom > 1:
-       prob = interp_map(prob, args_zoom, image_size[1], image_size[0])
+    #if args_zoom > 1:
+    #  prob = interp_map(prob, args_zoom, image_size[1], image_size[0])
+
+
+    prediction1 = np.argmax(prob, axis=2)
+
+    prob = Image.fromarray(prediction1.astype(dtype=np.uint8))
+
+    prediction2 = imresize(arr=prob,size=(input_size[0],input_size[1]),interp='bilinear')
+
+    prediction = prediction2
 
     # Recover the most likely prediction (actual segment class)
-    prediction = np.argmax(prob, axis=2)
+
 
     # Apply the color palette to the segmented image
     color_image = np.array(pascal_palette)[prediction.ravel()].reshape(
@@ -212,11 +226,17 @@ def post(prob, image_size):
 
     args_zoom = 8
     # Upsample
-    if args_zoom > 1:
-        prob = interp_map(prob, args_zoom, image_size[1], image_size[0])
+    #if args_zoom > 1:
+    #    prob = interp_map(prob, args_zoom, image_size[1], image_size[0])
+
+    prob = imresize(arr=prob, size=(500, 500), interp='bilinear')
 
     # Recover the most likely prediction (actual segment class)
-    prediction = np.argmax(prob, axis=2)
+    prob = np.argmax(prob, axis=2)
+
+    prob = Image.fromarray(prob.astype(dtype=np.uint8))
+
+    prediction = imresize(arr=prob,size=(image_size[0],image_size[1]),interp='bilinear')
 
     # Apply the color palette to the segmented image
     color_image = np.array(pascal_palette)[prediction.ravel()].reshape(
@@ -235,12 +255,16 @@ def predict_single_image(input_path, output_path, model, mean, input_size, batch
 
     trans_subimg_list = [transform_image(subimg, mean=mean) for subimg in subimg_list]
 
-    #bar = Bar('Processing', max=len(subimg_list))
+
 
     # predict on each image
-    #annotatedimg_list = [predict_image(subimg,model=model,pgbar=bar) for subimg in trans_subimg_list]
-    annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,input_size=input_size, batch_size = batch_size)
-    #bar.finish()
+    if os.environ['COMPUTERNAME'] == "PC120309":
+        # bar = Bar('Processing', max=len(subimg_list))
+        annotatedimg_list = [predict_image(subimg,model=model) for subimg in trans_subimg_list]
+        # bar.finish()
+    else:
+        annotatedimg_list = predict_batch_image(trans_subimg_list,model=model,input_size=input_size, batch_size = batch_size)
+
     #merge to one image again
     annotated_image = ism.image_merger(annotatedimg_list)
 
