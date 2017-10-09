@@ -260,7 +260,7 @@ def predict_single_image(input_path, output_path, model, mean, input_size, batch
 
     trans_subimg_list = [transform_image(subimg, mean=mean) for subimg in subimg_list]
 
-
+    CN = ""
     try:
         CN = os.environ['COMPUTERNAME']
     except:
